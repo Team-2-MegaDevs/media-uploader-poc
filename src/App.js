@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { handleUpload } from "./utils/firebase-utils";
+
 function App() {
   return (
     <div className="App">
