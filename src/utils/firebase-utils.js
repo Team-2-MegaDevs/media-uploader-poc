@@ -1,9 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import filesize from "filesize";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: `${process.env.REACT_APP_API_KEY}`,
   authDomain: "speak-habla-poc.firebaseapp.com",
@@ -16,6 +13,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const handleUpload = () => {
-  console.log({ app });
+export const handleUpload = (file) => {
+  //check file size
+  getFileSize(file);
+  console.log({ file });
+};
+
+export const getFileSize = (file) => {
+  if (file) {
+    return filesize(file.size);
+  }
 };

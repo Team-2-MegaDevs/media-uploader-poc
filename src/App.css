@@ -12,3 +12,10 @@
   margin: 0 auto;
   width: 10%;
 }
+
+.uploadForm {
+  display: flex;
+  margin: 1rem auto;
+  flex-direction: column;
+  justify-content: center;
+}
