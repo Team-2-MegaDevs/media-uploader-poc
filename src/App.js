@@ -22,7 +22,7 @@ function App() {
             setFile(ev.target.files[0]);
             setIsOptimized(() => {
               //only allow files < 10MB to be uploaded
-              return ev.target.files[0].size < 1000000 ? true : false;
+              return ev.target.files[0].size < 10000000 ? true : false;
             });
             setFileSize(getFileSize(ev.target.files[0]));
           }}
