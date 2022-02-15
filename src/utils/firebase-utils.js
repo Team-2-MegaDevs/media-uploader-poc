@@ -26,7 +26,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
 const auth = getAuth();
-let link = "";
+
+export let link = "";
+
 export const signIn = () => {
   signInAnonymously(auth)
     .then(() => {
@@ -49,14 +51,13 @@ export const handleUpload = (file) => {
       quality: 0.8,
       success: (compressedImage) => {
         //upload CompressedImage (as a blob)
-        link = uploadImage(compressedImage);
+        uploadImage(compressedImage);
       },
     });
   } else {
     //upload file(audio)
     console.log("uploading audio");
   }
-  return link;
 };
 
 const uploadImage = (file) => {
@@ -107,6 +108,7 @@ const uploadImage = (file) => {
       });
     }
   );
+  return link;
 };
 
 export const getFileSize = (file) => {
