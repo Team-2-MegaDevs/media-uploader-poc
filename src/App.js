@@ -5,15 +5,14 @@ import {
   getFileSize,
   signIn,
   link,
+  parseLink,
 } from "./utils/firebase-utils";
 
 function App() {
   const [file, setFile] = useState(null);
   const [isOptimized, setIsOptimized] = useState(false);
   const [fileSize, setFileSize] = useState(null);
-  const [url, setUrl] = useState(() => {
-    console.log(link);
-  });
+  const [url, setUrl] = useState("");
 
   useEffect(() => {
     signIn();
@@ -25,7 +24,7 @@ function App() {
         onSubmit={(ev) => {
           ev.preventDefault();
           handleUpload(file);
-          setUrl(link);
+          setUrl(parseLink(link));
         }}
       >
         <input
@@ -49,7 +48,9 @@ function App() {
           Upload File
         </button>
       </form>
-      <p className="downloadLink">{url ?? url}</p>
+      <a className="downloadLink" href={url} target="_blank">
+        {url ?? url}
+      </a>
     </div>
   );
 }
