@@ -1,17 +1,24 @@
 import "./App.css";
-import { useState } from "react";
-import { handleUpload, getFileSize } from "./utils/firebase-utils";
+import { useState, useEffect } from "react";
+import { handleUpload, getFileSize, signIn } from "./utils/firebase-utils";
 
 function App() {
   const [file, setFile] = useState(null);
   const [isOptimized, setIsOptimized] = useState(false);
   const [fileSize, setFileSize] = useState(null);
+  const [link, setLink] = useState(undefined);
+
+  useEffect(() => {
+    signIn();
+  }, []);
+
   return (
     <div className="App">
       <form
         onSubmit={(ev) => {
           ev.preventDefault();
-          handleUpload(file);
+          //console.log(sendLink(file));
+          setLink(handleUpload(file));
         }}
       >
         <input
@@ -35,7 +42,7 @@ function App() {
           Upload File
         </button>
       </form>
-      <p className="downloadLink"></p>
+      <p className="downloadLink">{link ? link : "no link"}</p>
     </div>
   );
 }
